@@ -1,0 +1,178 @@
+<div class="max-w-4xl mx-auto px-4 py-8">
+  <h1 class="text-3xl font-bold text-gray-800 mb-6">Add New Book</h1>
+
+  <form
+    (submit)="addBook()"
+    [formGroup]="addBookForm"
+    class="bg-white shadow-md rounded-lg p-6"
+  >
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <!-- Title Field -->
+      <div class="md:col-span-2">
+        <label for="title" class="block text-sm font-medium text-gray-700 mb-1"
+          >Title</label
+        >
+        <input
+          type="text"
+          id="title"
+          name="title"
+          formControlName="title"
+          placeholder="Enter book title"
+          class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+        />
+      </div>
+
+      <!-- Author Field -->
+      <div>
+        <label for="author" class="block text-sm font-medium text-gray-700 mb-1"
+          >Author</label
+        >
+        <input
+          type="text"
+          id="author"
+          name="author"
+          formControlName="author"
+          placeholder="Enter author name"
+          class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+        />
+      </div>
+
+      <!-- Category Field -->
+      <div>
+        <label
+          for="category"
+          class="block text-sm font-medium text-gray-700 mb-1"
+          >Category</label
+        >
+        <input
+          type="text"
+          id="category"
+          name="category"
+          formControlName="category"
+          placeholder="Enter book category"
+          class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+        />
+      </div>
+
+      <!-- Publication Date Field -->
+      <div>
+        <label
+          for="publicationDate"
+          class="block text-sm font-medium text-gray-700 mb-1"
+          >Publication Date</label
+        >
+        <input
+          type="date"
+          id="publicationDate"
+          name="publicationDate"
+          formControlName="publicationDate"
+          class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+        />
+      </div>
+
+      <!-- Publisher Field -->
+      <div>
+        <label
+          for="publishedBy"
+          class="block text-sm font-medium text-gray-700 mb-1"
+          >Publisher</label
+        >
+        <input
+          type="text"
+          id="publishedBy"
+          name="publishedBy"
+          formControlName="publishedBy"
+          placeholder="Enter publisher name"
+          class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+        />
+      </div>
+
+      <!-- Rating Field -->
+      <div>
+        <label for="rating" class="block text-sm font-medium text-gray-700 mb-1"
+          >Rating (1-5)</label
+        >
+        <input
+          type="number"
+          id="rating"
+          name="rating"
+          formControlName="rating"
+          min="1"
+          max="5"
+          step="1"
+          placeholder="Enter book rating"
+          class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+        />
+      </div>
+
+      <!-- Page Count Field -->
+      <div>
+        <label
+          for="pageCount"
+          class="block text-sm font-medium text-gray-700 mb-1"
+          >Page Count</label
+        >
+        <input
+          type="number"
+          id="pageCount"
+          name="pageCount"
+          formControlName="pageCount"
+          min="1"
+          placeholder="Enter number of pages"
+          class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+        />
+      </div>
+
+      <!-- Image URL Field -->
+      <div class="md:col-span-2">
+        <label for="imgUrl" class="block text-sm font-medium text-gray-700 mb-1"
+          >Cover Image URL</label
+        >
+        <input
+          type="url"
+          id="imgUrl"
+          name="imgUrl"
+          formControlName="imgUrl"
+          placeholder="https://example.com/book-cover.jpg"
+          class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+        />
+        <p class="mt-1 text-xs text-gray-500">
+          Enter a URL for the book cover image
+        </p>
+      </div>
+
+      <!-- Description Field -->
+      <div class="md:col-span-2">
+        <label
+          for="description"
+          class="block text-sm font-medium text-gray-700 mb-1"
+          >Description</label
+        >
+        <textarea
+          id="description"
+          name="description"
+          formControlName="description"
+          rows="4"
+          placeholder="Enter book description"
+          class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+        ></textarea>
+      </div>
+    </div>
+
+    <div class="flex justify-end gap-4 mt-6">
+      <button
+        type="button"
+        [routerLink]="['/books']"
+        class="px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50"
+      >
+        Cancel
+      </button>
+      <button
+        type="submit"
+        class="px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+      >
+        Add Book
+      </button>
+    </div>
+  </form>
+</div>

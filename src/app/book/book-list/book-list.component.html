@@ -1,0 +1,36 @@
+<h1 class="self-start text-4xl font-medium dark:text-white mb-8">
+  Book library
+</h1>
+<app-search-books />
+
+@if (books().length > 0) {
+<div
+  class="grid justify-items-center sm:justify-items-start grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
+>
+  @for (book of books(); track book.id) {
+  <app-book-card [book]="book" />
+  }
+</div>
+} @else {
+<h2>No books found. Please try a different search term.</h2>
+}
+
+<button
+  class="fixed bottom-6 right-6 bg-blue-400 text-white rounded-full w-14 h-14 flex items-center justify-center shadow-lg hover:bg-primary-dark transition-colors"
+  [routerLink]="['/books', 'new']"
+>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  >
+    <line x1="12" y1="5" x2="12" y2="19"></line>
+    <line x1="5" y1="12" x2="19" y2="12"></line>
+  </svg>
+</button>

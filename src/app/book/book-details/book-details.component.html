@@ -1,0 +1,111 @@
+@if (book) {
+
+<!-- Responsive layout: 2 columns on md+ screens, 1 column on smaller screens -->
+<div class="flex flex-col md:flex-row md:gap-8">
+  <!-- Book cover image section (40% width on desktop) -->
+
+  <img
+    [src]="book.imgUrl"
+    [alt]="book.title + ' cover'"
+    class="mx-auto rounded-lg shadow-lg aspect-[2/3] max-w-[400px] w-full md:w-2/5 flex justify-center mb-8 md:mb-0"
+    onerror="this.src='assets/images/placeholder-book.jpg'"
+  />
+
+  <!-- Book details section (60% width on desktop) -->
+  <div class="md:w-3/5">
+    <h1 class="text-3xl md:text-4xl font-bold text-gray-800 mb-2">
+      {{ book.title }}
+    </h1>
+
+    <div class="flex items-center gap-2 mb-4">
+      <p class="text-lg text-gray-600">
+        by <span class="font-semibold">{{ book.author }}</span>
+      </p>
+
+      <!-- Rating display -->
+      <div class="flex items-center">
+        <span class="text-yellow-500 mr-1">★</span>
+        <span class="font-medium">{{ book.rating }}</span>
+      </div>
+    </div>
+
+    <!-- Publisher and publication date -->
+    <div class="text-gray-600 mb-6">
+      <p>
+        Published by {{ book.publishedBy }} •
+        {{ book.publicationDate | date : "MMMM yyyy" }}
+      </p>
+    </div>
+
+    <!-- Categories/Genres -->
+    <div class="mb-6 flex flex-wrap gap-2">
+      @for (category of book.categories; track category) {
+      <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">
+        {{ category }}
+      </span>
+      }
+    </div>
+
+    <!-- Book metadata -->
+    <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 mb-6 text-gray-700">
+      <div>
+        <p class="font-semibold">Pages</p>
+        <p>{{ book.pageCount }}</p>
+      </div>
+      <div>
+        <p class="font-semibold">Time to Complete</p>
+        <p>
+          {{ getReadingTimeHours(book) }}h {{ getReadingTimeMinutes(book) }}m
+        </p>
+      </div>
+    </div>
+
+    <!-- Description -->
+    <div class="mt-6">
+      <h2 class="text-xl font-semibold mb-2 text-gray-800">Description</h2>
+      <p class="text-gray-700 leading-relaxed">{{ book.description }}</p>
+    </div>
+
+    <!-- Delete Book Button -->
+    <div class="flex gap-x-4 my-4">
+      <button
+        routerLink="/books"
+        class="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-blue-100 text-blue-800 hover:bg-blue-200 focus:outline-hidden focus:bg-blue-200 disabled:opacity-50 disabled:pointer-events-none dark:text-blue-400 dark:bg-blue-800/30 dark:hover:bg-blue-800/20 dark:focus:bg-blue-800/20"
+      >
+        Return to Book Library
+      </button>
+      <button
+        (click)="onDeleteBook()"
+        class="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-red-100 text-red-800 hover:bg-red-200 focus:outline-hidden focus:bg-red-200 disabled:opacity-50 disabled:pointer-events-none dark:text-red-400 dark:bg-red-800/30 dark:hover:bg-red-800/20 dark:focus:bg-red-800/20"
+      >
+        Delete Book
+      </button>
+    </div>
+  </div>
+</div>
+} @else {
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  class="h-16 w-16 text-gray-400 mx-auto mb-4"
+  fill="none"
+  viewBox="0 0 24 24"
+  stroke="currentColor"
+>
+  <path
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    stroke-width="2"
+    d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+  />
+</svg>
+<h2 class="text-2xl font-bold text-gray-800 mb-2">Sorry, Book Not Found</h2>
+<p class="text-gray-600 mb-6">
+  The book you're looking for doesn't exist or may have been removed.
+</p>
+<a
+  routerLink="/books"
+  class="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-blue-100 text-blue-800 hover:bg-blue-200 focus:outline-hidden focus:bg-blue-200 disabled:opacity-50 disabled:pointer-events-none dark:text-blue-400 dark:bg-blue-800/30 dark:hover:bg-blue-800/20 dark:focus:bg-blue-800/20"
+>
+  Return to Book Library
+</a>
+}
