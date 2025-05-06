@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { BookService } from '../book-service/book.service';
 
 @Component({
@@ -6,6 +6,13 @@ import { BookService } from '../book-service/book.service';
   templateUrl: './search-books.component.html',
   standalone: false,
 })
-export class SearchBooksComponent {
+export class SearchBooksComponent implements OnInit {
   bookService = inject(BookService);
+  searchTerm = '';
+  ngOnInit() {
+    this.bookService.searchBooks('');
+  }
+  onSearch() {
+    this.bookService.searchBooks(this.searchTerm);
+  }
 }

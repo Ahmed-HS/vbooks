@@ -6,14 +6,14 @@ import { BookRoutingModule } from './book-routing.module';
 import { BookCardComponent } from './book-card/book-card.component';
 import { SearchBooksComponent } from './search-books/search-books.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AddBookComponent } from './add-book/add-book.component';
+import { AddEditBookComponent } from './add-edit-book/add-edit-book.component';
 @NgModule({
   declarations: [
     BookCardComponent,
     BookListComponent,
     BookDetailsComponent,
     SearchBooksComponent,
-    AddBookComponent,
+    AddEditBookComponent,
   ],
   imports: [CommonModule, BookRoutingModule, FormsModule, ReactiveFormsModule],
 })

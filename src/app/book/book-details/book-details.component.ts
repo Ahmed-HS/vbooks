@@ -1,5 +1,5 @@
-import { Component, inject } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, input } from '@angular/core';
+import { Router } from '@angular/router';
 import { BookService } from '../book-service/book.service';
 import { Book } from '../models/book.model';
 
@@ -9,17 +9,9 @@ import { Book } from '../models/book.model';
   standalone: false,
 })
 export class BookDetailsComponent {
-  private bookId: number;
-  private averageReadingSpeed: number = 30; // pages per hour
-  book: Book | undefined;
-  constructor(
-    currentRoute: ActivatedRoute,
-    private router: Router,
-    private bookService: BookService
-  ) {
-    this.bookId = Number(currentRoute.snapshot.paramMap.get('id'));
-    this.book = bookService.getBookById(this.bookId);
-  }
+  private averageReadingSpeed = 30; // pages per hour
+  book = input.required<Book>();
+  constructor(private router: Router, private bookService: BookService) {}
 
   getReadingTimeHours(book: Book): number {
     return Math.floor(book.pageCount / this.averageReadingSpeed);
@@ -34,7 +26,7 @@ export class BookDetailsComponent {
 
   onDeleteBook() {
     if (!this.book) return;
-    this.bookService.deleteBook(this.book);
+    this.bookService.deleteBook(this.book());
     this.router.navigate(['/books']);
   }
 }
