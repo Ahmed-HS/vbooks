@@ -1,15 +1,19 @@
 <a
+  data-test-id="book-card"
   class="inline-flex flex-col bg-white border border-gray-200 shadow-2xs rounded-xl hover:shadow-lg focus:outline-hidden focus:shadow-lg transition dark:bg-neutral-900 dark:border-neutral-700 dark:shadow-neutral-700/70"
   [routerLink]="['/books', book().id]"
 >
   <img
-    class="aspect-[2/3] w-full max-w-[400px] rounded-t-xl"
+    class="mx-auto aspect-[2/3] w-full max-w-[350px] rounded-t-xl"
     [src]="book().imgUrl"
     alt="Book Cover Image"
-    onerror="this.src='assets/placeholder-book.png'"
+    onerror="this.src='assets/placeholder-book.png'; this.onerror='';"
   />
   <div class="p-4 md:p-5 max-w-[400px]">
-    <h3 class="text-lg font-bold text-gray-800 dark:text-white">
+    <h3
+      data-test-id="book-title"
+      class="text-lg font-bold text-gray-800 dark:text-white"
+    >
       {{ book().title }}
     </h3>
     <p class="mt-1 text-gray-500 dark:text-neutral-400">

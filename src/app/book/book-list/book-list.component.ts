@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { BookService } from '../book-service/book.service';
-import { UserService } from '../../user/user.service';
+import { UserService } from '../../user/user-service/user.service';
 import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
@@ -11,7 +11,7 @@ import { toSignal } from '@angular/core/rxjs-interop';
 export class BookListComponent {
   private bookService = inject(BookService);
   userService = inject(UserService);
-  books = toSignal(this.bookService.getAllBooks(), { initialValue: [] });
+  books = toSignal(this.bookService.getFilteredBooks());
   onLogout() {
     this.userService.logout();
   }

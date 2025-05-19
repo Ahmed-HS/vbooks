@@ -1,5 +1,5 @@
 import { HttpHandlerFn, HttpRequest } from '@angular/common/http';
-import { UserService } from '../user.service';
+import { UserService } from '../user-service/user.service';
 import { inject } from '@angular/core';
 import { supabaseApiKey } from '../../core/supabase.config';
 

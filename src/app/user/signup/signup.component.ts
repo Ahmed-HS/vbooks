@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { NonNullableFormBuilder, Validators } from '@angular/forms';
 import { passwordsMatch } from '../validators/password-match.validator';
-import { UserService } from '../user.service';
+import { UserService } from '../user-service/user.service';
 
 @Component({
   selector: 'app-signup',

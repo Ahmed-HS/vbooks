@@ -3,7 +3,7 @@ import { Book, mapFromDTO, mapToDTO, NewBook } from '../models/book.model';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { booksListUrl, booksUrl } from '../../core/supabase.config';
 import { combineLatestWith, debounceTime, map, Subject } from 'rxjs';
-import { UserService } from '../../user/user.service';
+import { UserService } from '../../user/user-service/user.service';
 
 @Injectable({
   providedIn: 'root',
@@ -75,6 +75,6 @@ export class BookService {
     const params = new HttpParams()
       .set('id', `eq.${book.id}`)
       .set('user_id', `eq.${userId}`);
-    this.http.patch(booksUrl, mapToDTO(book), { params }).subscribe();
+    return this.http.patch(booksUrl, mapToDTO(book), { params });
   }
 }

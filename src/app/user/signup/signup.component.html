@@ -13,6 +13,7 @@
     <div>
       <label for="email" class="sr-only">Email address</label>
       <input
+        data-test-id="email-input"
         id="email"
         name="email"
         type="email"
@@ -26,7 +27,11 @@
       />
     </div>
     @let email = signupForm.controls.email;
-    <div *ngIf="email.invalid && email.touched" class="text-red-500 text-sm">
+    <div
+      data-test-id="email-error"
+      *ngIf="email.invalid && email.touched"
+      class="text-red-500 text-sm"
+    >
       <div *ngIf="email.errors?.['required']">Email is required.</div>
       <div *ngIf="email.errors?.['email']">Please enter a valid email.</div>
     </div>
@@ -35,6 +40,7 @@
     <div>
       <label for="password" class="sr-only">Password</label>
       <input
+        data-test-id="password-input"
         id="password"
         name="password"
         type="password"
@@ -49,6 +55,7 @@
     <div>
       <label for="password" class="sr-only">Password</label>
       <input
+        data-test-id="confirm-password-input"
         id="confirmPassword"
         name="confirmPassword"
         type="password"
@@ -62,6 +69,7 @@
     @let password = signupForm.controls.password; @let confirmPassword =
     signupForm.controls.confirmPassword;
     <div
+      data-test-id="password-error"
       *ngIf="password.invalid && password.touched"
       class="text-red-500 text-sm"
     >
@@ -71,6 +79,7 @@
       </div>
     </div>
     <div
+      data-test-id="confirm-password-error"
       *ngIf="confirmPassword.touched && signupForm.errors?.['passwordsMismatch']"
       class="text-red-500 text-sm"
     >
@@ -78,6 +87,7 @@
     </div>
     <div>
       <button
+        data-test-id="signup-button"
         type="submit"
         [disabled]="signupForm.invalid"
         class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50 disabled:cursor-not-allowed"

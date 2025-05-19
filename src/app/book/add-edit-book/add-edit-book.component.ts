@@ -3,6 +3,7 @@ import { NonNullableFormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BookService } from '../book-service/book.service';
 import { Book } from '../models/book.model';
+import { firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-add-book',
@@ -45,7 +46,7 @@ export class AddEditBookComponent implements OnInit {
     }
   }
 
-  addBook() {
+  async addBook() {
     const fromValue = this.bookForm.getRawValue();
     const newBook = {
       title: fromValue.title,
@@ -60,7 +61,9 @@ export class AddEditBookComponent implements OnInit {
     };
     const currentBook = this.book();
     if (currentBook) {
-      this.bookService.updateBook({ id: currentBook.id, ...newBook });
+      await firstValueFrom(
+        this.bookService.updateBook({ id: currentBook.id, ...newBook })
+      );
       this.router.navigate(['../'], {
         relativeTo: this.currentRoute,
       });

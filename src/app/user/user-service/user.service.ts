@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { User, UserCredentials } from './models/user.model';
-import { loginUrl, signupUrl } from '../core/supabase.config';
+import { User, UserCredentials } from '../models/user.model';
+import { loginUrl, signupUrl } from '../../core/supabase.config';
 import { Router } from '@angular/router';
 
 @Injectable({

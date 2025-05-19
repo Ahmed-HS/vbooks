@@ -42,4 +42,16 @@ describe('Book DTO mapping', () => {
     expect(mappedBookDTO.page_count).toBeTruthy();
     expect(mappedBookDTO.page_count).toEqual(book.pageCount);
   });
+
+  it('mapToDTO should return the input if it is not an object', () => {
+    const input = 'not an object';
+    const result = mapToDTO(input);
+    expect(result).toEqual(input);
+  });
+
+  it('mapFromDTO should return the input if it is not an object', () => {
+    const input = 'not an object';
+    const result = mapFromDTO(input);
+    expect(result).toEqual(input);
+  });
 });

@@ -13,6 +13,7 @@
     <div>
       <label for="email" class="sr-only">Email address</label>
       <input
+        data-test-id="email-input"
         id="email"
         name="email"
         type="email"
@@ -27,7 +28,11 @@
       />
     </div>
 
-    <div *ngIf="email.invalid && email.touched" class="text-red-500 text-sm">
+    <div
+      data-test-id="email-error"
+      *ngIf="email.invalid && email.touched"
+      class="text-red-500 text-sm"
+    >
       <div *ngIf="email.errors?.['required']">Email is required.</div>
       <div *ngIf="email.errors?.['email']">Please enter a valid email.</div>
     </div>
@@ -36,6 +41,7 @@
     <div>
       <label for="password" class="sr-only">Password</label>
       <input
+        data-test-id="password-input"
         id="password"
         name="password"
         type="password"
@@ -49,6 +55,7 @@
       />
     </div>
     <div
+      data-test-id="password-error"
       *ngIf="password.invalid && password.touched"
       class="text-red-500 text-sm"
     >
@@ -56,6 +63,7 @@
     </div>
     <div>
       <button
+        data-test-id="login-button"
         type="submit"
         [disabled]="loginForm.invalid"
         class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50 disabled:cursor-not-allowed"
@@ -123,7 +131,11 @@
       d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
     ></path>
   </svg>
-  <p *ngIf="errorMessage" class="text-red-500 text-sm mt-2">
+  <p
+    data-test-id="error-message"
+    *ngIf="errorMessage"
+    class="text-red-500 text-sm mt-2"
+  >
     {{ errorMessage }}
   </p>
 </div>

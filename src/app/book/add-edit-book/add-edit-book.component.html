@@ -160,7 +160,11 @@
         ></textarea>
       </div>
 
-      <p [class.invisible]="bookForm.valid" class="text-red-500 text-sm">
+      <p
+        data-test-id="errorMessage"
+        [class.invisible]="bookForm.valid"
+        class="text-red-500 text-sm"
+      >
         Please fill all the book details.
       </p>
     </div>
