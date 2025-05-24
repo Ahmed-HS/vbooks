@@ -1,4 +1,4 @@
-<div class="flex items-center mb-8">
+<header class="flex items-center mb-8">
   <h1 class="text-4xl font-medium dark:text-white">Book library</h1>
   <span class="grow"></span>
   <span class="mr-4">{{ userService.currentUser?.email }}</span>
@@ -9,7 +9,7 @@
   >
     Logout
   </button>
-</div>
+</header>
 
 <app-search-books />
 @let booksList = books(); @if(!booksList) {
@@ -34,18 +34,21 @@
   ></path>
 </svg>
 } @else if (booksList.length > 0) {
-<div
-  class=" grid justify-items-center grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
+<section
+  role="list"
+  aria-label="Book list"
+  class="grid justify-items-center grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
 >
   @for (book of booksList; track book.id) {
   <app-book-card [book]="book" />
   }
-</div>
+</section>
 } @else {
 <h2>No books found. Please try a different search term.</h2>
 }
 
 <button
+  aria-label="Add new book"
   class="fixed bottom-6 right-6 bg-blue-400 text-white rounded-full w-14 h-14 flex items-center justify-center shadow-lg hover:bg-primary-dark transition-colors"
   [routerLink]="['/books', 'new']"
 >

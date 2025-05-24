@@ -54,7 +54,7 @@ export class BookService {
 
     return this.http
       .get<Book[]>(booksUrl, { params })
-      .pipe(map((books) => mapFromDTO(books[0])));
+      .pipe(map((books) => mapFromDTO(books[0]) as Book));
   }
 
   addBook(newbook: NewBook) {

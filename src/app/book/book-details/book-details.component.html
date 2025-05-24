@@ -12,8 +12,9 @@
   />
 
   <!-- Book details section (60% width on desktop) -->
-  <div class="md:w-3/5">
+  <section class="md:w-3/5">
     <h1
+      aria-label="Book title"
       data-test-id="book-title"
       class="text-3xl md:text-4xl font-bold text-gray-800 mb-2"
     >
@@ -21,26 +22,27 @@
     </h1>
 
     <div class="flex items-center gap-2 mb-4">
-      <p class="text-lg text-gray-600">
+      <p aria-label="Book author" class="text-lg text-gray-600">
         by <span class="font-semibold">{{ book().author }}</span>
       </p>
 
       <!-- Rating display -->
-      <div class="flex items-center">
+      <section class="flex items-center">
         <span class="text-yellow-500 mr-1">★</span>
-        <span class="font-medium">{{ book().rating }}</span>
-      </div>
+        <span aria-label="Book rating" class="font-medium">{{
+          book().rating
+        }}</span>
+      </section>
     </div>
 
     <!-- Publisher and publication date -->
-    <div class="text-gray-600 mb-6">
-      <p>
-        Published by {{ book().publishedBy }} •
-        {{ book().publicationDate | date : "MMMM yyyy" }}
-      </p>
-    </div>
+    <p aria-label="Book publication details" class="text-gray-600 mb-6">
+      Published by {{ book().publishedBy }} •
+      {{ book().publicationDate | date : "MMMM yyyy" }}
+    </p>
 
     <span
+      aria-label="Book category"
       class="inline-block mb-6 bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm"
     >
       {{ book().category }}
@@ -48,27 +50,31 @@
 
     <!-- Book metadata -->
     <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 mb-6 text-gray-700">
-      <div>
-        <p class="font-semibold">Pages</p>
+      <section aria-describedby="book-page-count">
+        <h2 id="book-page-count" class="font-semibold">Pages</h2>
         <p>{{ book().pageCount }}</p>
-      </div>
-      <div>
-        <p class="font-semibold">Time to Complete</p>
+      </section>
+      <section aria-describedby="book-time">
+        <h2 id="book-time" class="font-semibold">Time to Complete</h2>
         <p>
           {{ getReadingTimeHours(book()) }}h
           {{ getReadingTimeMinutes(book()) }}m
         </p>
-      </div>
+      </section>
     </div>
 
     <!-- Description -->
-    <div class="mt-6">
-      <h2 class="text-xl font-semibold mb-2 text-gray-800">Description</h2>
+    <section aria-describedby="book-description" class="mt-6">
+      <h2
+        id="book-description"
+        class="text-xl font-semibold mb-2 text-gray-800"
+      >
+        Description
+      </h2>
       <p class="text-gray-700 leading-relaxed">{{ book().description }}</p>
-    </div>
+    </section>
 
-    <!-- Delete Book Button -->
-    <div class="flex gap-x-4 my-4">
+    <section aria-label="Book actions" class="flex gap-x-4 my-4">
       <button
         data-test-id="back-button"
         routerLink="/books"
@@ -88,8 +94,8 @@
       >
         Delete Book
       </button>
-    </div>
-  </div>
+    </section>
+  </section>
 </div>
 } @else {
 <svg
@@ -106,7 +112,7 @@
     d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
   />
 </svg>
-<h2 class="text-2xl font-bold text-gray-800 mb-2">Sorry, Book Not Found</h2>
+<h1 class="text-2xl font-bold text-gray-800 mb-2">Sorry, Book Not Found</h1>
 <p class="text-gray-600 mb-6">
   The book you're looking for doesn't exist or may have been removed.
 </p>

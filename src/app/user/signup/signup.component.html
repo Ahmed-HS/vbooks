@@ -1,120 +1,127 @@
 <div
   class="min-h-screen flex flex-col items-center justify-center py-12 px-4 sm:px-6 lg:px-8"
 >
-  <h2 class="text-center mt-6 text-3xl font-extrabold text-gray-900">
+  <h1 class="text-center mt-6 text-3xl font-extrabold text-gray-900">
     Create a new account
-  </h2>
+  </h1>
   <form
     (submit)="onSignup()"
     class="w-full max-w-lg mt-8 space-y-6"
     [formGroup]="signupForm"
   >
     <!-- Email input -->
-    <div>
-      <label for="email" class="sr-only">Email address</label>
-      <input
-        data-test-id="email-input"
-        id="email"
-        name="email"
-        type="email"
-        required
-        email
-        autocomplete="email"
-        class="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-        placeholder="Email address"
-        aria-label="Email address"
-        formControlName="email"
-      />
-    </div>
+    <label for="email" class="sr-only">Email address</label>
+    <input
+      data-test-id="email-input"
+      id="email"
+      name="email"
+      type="email"
+      required
+      email
+      autocomplete="email"
+      class="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+      placeholder="Email address"
+      aria-label="Email address"
+      formControlName="email"
+    />
     @let email = signupForm.controls.email;
-    <div
+    <section
       data-test-id="email-error"
+      aria-label="Email errors"
       *ngIf="email.invalid && email.touched"
       class="text-red-500 text-sm"
     >
-      <div *ngIf="email.errors?.['required']">Email is required.</div>
-      <div *ngIf="email.errors?.['email']">Please enter a valid email.</div>
-    </div>
+      <p aria-label="Email required error" *ngIf="email.errors?.['required']">
+        Email is required.
+      </p>
+      <p aria-label="Email invalid error" *ngIf="email.errors?.['email']">
+        Please enter a valid email.
+      </p>
+    </section>
 
     <!-- Password input -->
-    <div>
-      <label for="password" class="sr-only">Password</label>
-      <input
-        data-test-id="password-input"
-        id="password"
-        name="password"
-        type="password"
-        required
-        class="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-        placeholder="Password"
-        aria-label="Password"
-        formControlName="password"
-      />
-    </div>
+    <label for="password" class="sr-only">Password</label>
+    <input
+      data-test-id="password-input"
+      id="password"
+      name="password"
+      type="password"
+      required
+      class="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+      placeholder="Password"
+      aria-label="Password"
+      formControlName="password"
+    />
     <!-- Confirm Password input -->
-    <div>
-      <label for="password" class="sr-only">Password</label>
-      <input
-        data-test-id="confirm-password-input"
-        id="confirmPassword"
-        name="confirmPassword"
-        type="password"
-        required
-        class="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-        placeholder="confirm password"
-        aria-label="Password"
-        formControlName="confirmPassword"
-      />
-    </div>
+    <label for="password" class="sr-only">Password</label>
+    <input
+      data-test-id="confirm-password-input"
+      id="confirmPassword"
+      name="confirmPassword"
+      type="password"
+      required
+      class="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+      placeholder="confirm password"
+      aria-label="Password"
+      formControlName="confirmPassword"
+    />
     @let password = signupForm.controls.password; @let confirmPassword =
     signupForm.controls.confirmPassword;
-    <div
+    <section
       data-test-id="password-error"
+      aria-label="Password errors"
       *ngIf="password.invalid && password.touched"
       class="text-red-500 text-sm"
     >
-      <div *ngIf="password.errors?.['required']">Password is required.</div>
-      <div *ngIf="password.errors?.['minlength']">
+      <p
+        aria-label="Password required error"
+        *ngIf="password.errors?.['required']"
+      >
+        Password is required.
+      </p>
+      <p
+        aria-label="Password length error"
+        *ngIf="password.errors?.['minlength']"
+      >
         Password must be at least 6 characters long.
-      </div>
-    </div>
-    <div
+      </p>
+    </section>
+    <p
       data-test-id="confirm-password-error"
+      aria-label="Passwords mismatch error"
       *ngIf="confirmPassword.touched && signupForm.errors?.['passwordsMismatch']"
       class="text-red-500 text-sm"
     >
       Passwords do not match.
-    </div>
-    <div>
-      <button
-        data-test-id="signup-button"
-        type="submit"
-        [disabled]="signupForm.invalid"
-        class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50 disabled:cursor-not-allowed"
-        aria-label="Sign in"
-      >
-        <span class="absolute left-0 inset-y-0 flex items-center pl-3">
-          <!-- Heroicon name: solid/lock-closed -->
-          <svg
-            class="h-5 w-5 text-indigo-500 group-hover:text-indigo-400"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 20 20"
-            fill="currentColor"
-            aria-hidden="true"
-          >
-            <path
-              fill-rule="evenodd"
-              d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
-              clip-rule="evenodd"
-            />
-          </svg>
-        </span>
-        Sign up
-      </button>
-    </div>
+    </p>
+    <button
+      data-test-id="signup-button"
+      type="submit"
+      [disabled]="signupForm.invalid"
+      class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50 disabled:cursor-not-allowed"
+      aria-label="Sign in"
+    >
+      <span class="absolute left-0 inset-y-0 flex items-center pl-3">
+        <!-- Heroicon name: solid/lock-closed -->
+        <svg
+          class="h-5 w-5 text-indigo-500 group-hover:text-indigo-400"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 20 20"
+          fill="currentColor"
+          aria-hidden="true"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
+            clip-rule="evenodd"
+          />
+        </svg>
+      </span>
+      Sign up
+    </button>
   </form>
 
-  <div class="text-center mt-4">
+  <section class="text-center mt-4">
     <p class="text-sm text-gray-600">
       Already have an account?
       <a
@@ -124,7 +131,7 @@
         login
       </a>
     </p>
-  </div>
+  </section>
   <svg
     *ngIf="isLoading"
     class="mt-4 h-5 w-5 text-indigo-600 animate-spin"
@@ -147,7 +154,11 @@
     ></path>
   </svg>
 
-  <div *ngIf="signupSuccess">
+  <p
+    aria-label="Signup success message"
+    aria-live="polite"
+    *ngIf="signupSuccess"
+  >
     Signup successful! Please
     <a
       routerLink="/users/login"
@@ -155,9 +166,13 @@
     >
       login
     </a>
-  </div>
+  </p>
 
-  <p *ngIf="errorMessage" class="text-red-500 text-sm mt-2">
+  <p
+    aria-label="Signup error message"
+    *ngIf="errorMessage"
+    class="text-red-500 text-sm mt-2"
+  >
     {{ errorMessage }}
   </p>
 </div>

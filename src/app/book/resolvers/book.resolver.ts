@@ -9,8 +9,6 @@ export const bookResolver: ResolveFn<Book> = async (
 ) => {
   const bookid = route.paramMap.get('id');
   const bookService = inject(BookService);
-  const book = (await firstValueFrom(
-    bookService.getBookById(Number(bookid))
-  )) as Book;
+  const book = await firstValueFrom(bookService.getBookById(Number(bookid)));
   return book;
 };

@@ -1,96 +1,101 @@
 <div
   class="min-h-screen flex flex-col items-center justify-center py-12 px-4 sm:px-6 lg:px-8"
 >
-  <h2 class="text-center mt-6 text-3xl font-extrabold text-gray-900">
+  <h1 class="text-center mt-6 text-3xl font-extrabold text-gray-900">
     Sign in to your account
-  </h2>
+  </h1>
   <form
     (submit)="onLogin(loginForm)"
     class="w-full max-w-lg mt-8 space-y-6"
     #loginForm="ngForm"
   >
     <!-- Email input -->
-    <div>
-      <label for="email" class="sr-only">Email address</label>
-      <input
-        data-test-id="email-input"
-        id="email"
-        name="email"
-        type="email"
-        required
-        email
-        ngModel
-        #email="ngModel"
-        autocomplete="email"
-        class="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-        placeholder="Email address"
-        aria-label="Email address"
-      />
-    </div>
-
-    <div
+    <label for="email" class="sr-only">Email address</label>
+    <input
+      data-test-id="email-input"
+      id="email"
+      name="email"
+      type="email"
+      required
+      email
+      ngModel
+      #email="ngModel"
+      autocomplete="email"
+      class="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+      placeholder="Email address"
+      aria-label="Email address"
+    />
+    <section
       data-test-id="email-error"
+      aria-label="Email errors"
       *ngIf="email.invalid && email.touched"
       class="text-red-500 text-sm"
     >
-      <div *ngIf="email.errors?.['required']">Email is required.</div>
-      <div *ngIf="email.errors?.['email']">Please enter a valid email.</div>
-    </div>
+      <p *ngIf="email.errors?.['required']" aria-label="Email required error">
+        Email is required.
+      </p>
+      <p aria-label="Email invalid error" *ngIf="email.errors?.['email']">
+        Please enter a valid email.
+      </p>
+    </section>
 
     <!-- Password input -->
-    <div>
-      <label for="password" class="sr-only">Password</label>
-      <input
-        data-test-id="password-input"
-        id="password"
-        name="password"
-        type="password"
-        required
-        ngModel
-        #password="ngModel"
-        autocomplete="current-password"
-        class="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-        placeholder="Password"
-        aria-label="Password"
-      />
-    </div>
-    <div
+    <label for="password" class="sr-only">Password</label>
+    <input
+      data-test-id="password-input"
+      id="password"
+      name="password"
+      type="password"
+      required
+      ngModel
+      #password="ngModel"
+      autocomplete="current-password"
+      class="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+      placeholder="Password"
+      aria-label="Password"
+    />
+    <section
       data-test-id="password-error"
+      aria-label="Password errors"
       *ngIf="password.invalid && password.touched"
       class="text-red-500 text-sm"
     >
-      <div *ngIf="password.errors?.['required']">Password is required.</div>
-    </div>
-    <div>
-      <button
-        data-test-id="login-button"
-        type="submit"
-        [disabled]="loginForm.invalid"
-        class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50 disabled:cursor-not-allowed"
-        aria-label="Sign in"
+      <p
+        aria-label="Password required error"
+        *ngIf="password.errors?.['required']"
       >
-        <span class="absolute left-0 inset-y-0 flex items-center pl-3">
-          <!-- Heroicon name: solid/lock-closed -->
-          <svg
-            class="h-5 w-5 text-indigo-500 group-hover:text-indigo-400"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 20 20"
-            fill="currentColor"
-            aria-hidden="true"
-          >
-            <path
-              fill-rule="evenodd"
-              d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
-              clip-rule="evenodd"
-            />
-          </svg>
-        </span>
-        Log In
-      </button>
-    </div>
+        Password is required.
+      </p>
+    </section>
+
+    <button
+      data-test-id="login-button"
+      type="submit"
+      [disabled]="loginForm.invalid"
+      class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50 disabled:cursor-not-allowed"
+      aria-label="Sign in"
+    >
+      <span class="absolute left-0 inset-y-0 flex items-center pl-3">
+        <!-- Heroicon name: solid/lock-closed -->
+        <svg
+          class="h-5 w-5 text-indigo-500 group-hover:text-indigo-400"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 20 20"
+          fill="currentColor"
+          aria-hidden="true"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
+            clip-rule="evenodd"
+          />
+        </svg>
+      </span>
+      Log In
+    </button>
   </form>
 
-  <div class="text-center mt-4">
+  <section class="text-center mt-4">
     <p class="text-sm text-gray-600">
       Don't have an account?
       <a
@@ -100,7 +105,7 @@
         Sign up
       </a>
     </p>
-  </div>
+  </section>
   <p class="mt-4 text-center">
     Hint: Use the following credentials to log in:
     <br />
@@ -133,6 +138,7 @@
   </svg>
   <p
     data-test-id="error-message"
+    aria-label="Error message"
     *ngIf="errorMessage"
     class="text-red-500 text-sm mt-2"
   >

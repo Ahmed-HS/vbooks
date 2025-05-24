@@ -127,8 +127,15 @@ describe('BookService', () => {
     const mockResponse = [
       {
         id: 1,
-        title: 'Book 1',
-        description: 'Description 1',
+        title: 'New Book',
+        description: 'New Book Description',
+        author: 'New Author',
+        publicationDate: new Date(),
+        publishedBy: 'New Publisher',
+        rating: 4.5,
+        pageCount: 250,
+        category: 'Fiction',
+        imgUrl: 'http://example.com/image.jpg',
       },
     ];
     httpClientSpy.get.and.returnValue(of(mockResponse));

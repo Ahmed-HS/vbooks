@@ -1,23 +1,24 @@
 <a
   data-test-id="book-card"
-  class="inline-flex flex-col bg-white border border-gray-200 shadow-2xs rounded-xl hover:shadow-lg focus:outline-hidden focus:shadow-lg transition dark:bg-neutral-900 dark:border-neutral-700 dark:shadow-neutral-700/70"
+  [attr.aria-label]="book().title + 'book link'"
+  class="inline-flex flex-col bg-white border border-gray-200 shadow-2xs rounded-xl hover:shadow-2xl focus:outline-hidden focus:shadow-2xl transition dark:bg-neutral-900 dark:border-neutral-700 dark:shadow-neutral-700/70"
   [routerLink]="['/books', book().id]"
 >
   <img
     class="mx-auto aspect-[2/3] w-full max-w-[350px] rounded-t-xl"
     [src]="book().imgUrl"
-    alt="Book Cover Image"
+    [alt]="book().title + ' cover image'"
     onerror="this.src='assets/placeholder-book.png'; this.onerror='';"
   />
-  <div class="p-4 md:p-5 max-w-[400px]">
-    <h3
+  <section class="p-4 md:p-5 max-w-[400px]">
+    <h2
       data-test-id="book-title"
       class="text-lg font-bold text-gray-800 dark:text-white"
     >
       {{ book().title }}
-    </h3>
+    </h2>
     <p class="mt-1 text-gray-500 dark:text-neutral-400">
       By {{ book().author }} - {{ book().publicationDate | date : "MMMM yyyy" }}
     </p>
-  </div>
+  </section>
 </a>
